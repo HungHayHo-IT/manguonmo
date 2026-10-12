@@ -58,7 +58,7 @@ The project is structured as two applications:
 - Spring Web
 - Spring Security
 - Spring Data JPA / Hibernate
-- Microsoft SQL Server JDBC driver
+- Microsoft SQL Server JDBC driver (included in the current Maven configuration)
 - JWT (JJWT)
 - Stripe Java SDK
 - Caffeine Cache
@@ -180,7 +180,7 @@ Configure the database connection and application settings in the backend's conf
 - `src/main/resources/sql/schema.sql`
 - `src/main/resources/sql/data.sql`
 
-Review these scripts and execute them against your development database if your local configuration does not initialize the schema and sample data automatically.
+Review these scripts before running them. **Important:** the Maven configuration currently includes the Microsoft SQL Server JDBC driver, while the checked-in `schema.sql` uses MySQL-style syntax (for example, `AUTO_INCREMENT` and `CREATE TABLE IF NOT EXISTS`). Confirm which database the application is configured to use, then align the JDBC driver, connection settings, and SQL scripts before initializing the database. Do not assume these scripts can run unchanged on SQL Server.
 
 The checked-in `.env.example` documents the expected Stripe and database password variables. Copy it to a local `.env` file at the repository root and fill in your own development values. **Do not commit real credentials or API secret keys.** Verify how your local Spring configuration loads environment variables before starting the backend.
 
